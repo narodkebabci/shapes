@@ -38,6 +38,16 @@ class Circle:
         })
         return string
 
+    @classmethod
+    def from_yaml(cls, string):
+        # create an instance
+        # create a circle from a yAML string
+        circle_dict = yaml.load(string, Loader=yaml.Loader)['circle']
+        print(circle_dict)
+        obj = cls(circle_dict['radius'],
+                  fill=circle_dict['fill'], stroke=circle_dict['stroke'], at=circle_dict['at'])
+        return obj
+
 def main():
     circle = Circle(5.0, fill='green', stroke='black')
     print(f'Area of the circle is {circle.calculate_area()}')
@@ -53,6 +63,16 @@ def main():
 
     my_yaml = yaml.dump(my_dict)
     print(my_yaml)
+
+    yaml_circle = """\
+    circle:
+    at: !!python/tuple
+    - 0
+    - 0
+    fill: green
+    radius: 5.0
+    stroke: black"""
+    my_circle = Circle.from_yaml(yaml_circle)
 
     return 0
 
