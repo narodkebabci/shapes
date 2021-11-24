@@ -1,6 +1,7 @@
 import sys
 import os
 from math import pi
+import yaml
 
 class Circle:
     def __init__(self, radius, fill='blue', stroke='black'):
@@ -27,10 +28,17 @@ class Circle:
 
 def main():
     circle = Circle(5.0, fill='green', stroke='black')
-    print(f'area = {circle.calculate_area()}')
-    print(f'circumference is {len(circle)}')
+    print(f'Area of the circle is {circle.calculate_area()}')
+    print(f'Circumference of the circle is {len(circle)}')
     print(circle()) # return the call
     print(circle) # return the str
+
+    my_dict = {
+        'key' : {
+            'inside_dict':[5,6,7,8]
+        }
+    }
+
     return 0
 
 class Quadrilateral:
@@ -53,10 +61,9 @@ class Canvas:
 class Text:
     def __init__(self, size=16, font='Helvetica', color='darkorange'):
         """
-
-        :param size:
-        :param font:
-        :param color:
+        :param size: set a default size for text class
+        :param font: set a default font for text class
+        :param color: set a default color for text class
         """
         self._size = size
         self._font = font
