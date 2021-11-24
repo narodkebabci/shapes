@@ -4,10 +4,11 @@ from math import pi
 import yaml
 
 class Circle:
-    def __init__(self, radius, fill='blue', stroke='black'):
+    def __init__(self, radius, fill='blue', stroke='black', at=(0,0)):
         self._radius = radius # private/protected
         self._fill = fill
         self._stroke = stroke
+        self._at = at
 
     def calculate_area(self):
         """ Calculate the area of a circle """
@@ -23,8 +24,19 @@ class Circle:
     def __call__(self):
         return 'I am a circle!'
 
+    # def __str__(self):
+      # return f"A {self._fill} circle of radius {self._radius}"
+
     def __str__(self):
-        return f"A {self._fill} circle of radius {self._radius}"
+        string = yaml.dump({
+            'circle':{
+                'radius':self._radius,
+                'fill':self._fill,
+                'stroke':self._stroke,
+                'at':self._at
+            }
+        })
+        return string
 
 def main():
     circle = Circle(5.0, fill='green', stroke='black')
@@ -38,6 +50,9 @@ def main():
             'inside_dict':[5,6,7,8]
         }
     }
+
+    my_yaml = yaml.dump(my_dict)
+    print(my_yaml)
 
     return 0
 
